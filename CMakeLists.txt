@@ -12,3 +12,24 @@ include_directories(${OpenCV_INCLUDE_DIRS} ${Qt6Widgets_INCLUDE_DIRS} ${Python3_
 
 add_executable(ImageProcessing src/main.cpp src/image_utils.cpp)
 target_link_libraries(ImageProcessing ${OpenCV_LIBS} Qt6::Widgets Python3::Python)
+
+# 安装目标
+install(TARGETS ImageProcessing DESTINATION bin)
+
+# 安装依赖库
+install(DIRECTORY /opt/homebrew/opt/qt/lib/QtWidgets.framework DESTINATION lib)
+install(DIRECTORY /opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13 DESTINATION include)
+
+# 安装头文件
+install(DIRECTORY include/ DESTINATION include)
+
+# CPack配置
+include(CPack)
+set(CPACK_PACKAGE_NAME "ImageProcessing")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_CONTACT "your_email@example.com")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Image Processing Tool")
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
+set(CPACK_SOURCE_GENERATOR "TGZ;ZIP")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-Source")
+set(CPACK_SOURCE_IGNORE_FILES "/build/;/\\\\.git/;/\\\\.svn/;/\\\\.hg/;/\\\\.bzr/;/_CPack_Packages/;\\\\.swp$;\\\\.#;/#\\\\.")
