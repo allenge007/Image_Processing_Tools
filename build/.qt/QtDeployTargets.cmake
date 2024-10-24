@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_ImageProcessing_FILE /Users/__allenge/Code/Image_Processing_Tools/build/ImageProcessing)
+set(__QT_DEPLOY_TARGET_ImageProcessing_TYPE EXECUTABLE)
