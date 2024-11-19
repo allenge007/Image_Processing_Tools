@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
 project(ImageProcessing)
 
+# 设置C++标准
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 设置编译器路径
+set(CMAKE_C_COMPILER /opt/homebrew/opt/llvm/bin/clang)
+set(CMAKE_CXX_COMPILER /opt/homebrew/opt/llvm/bin/clang++)
+
 # 设置OpenCV和Qt的安装路径
 set(CMAKE_PREFIX_PATH /opt/homebrew/opt/opencv /opt/homebrew/opt/qt)
 

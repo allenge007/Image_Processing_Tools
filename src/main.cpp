@@ -62,11 +62,11 @@ void logMessage(QTextEdit* log, const QString& message) {
     log->append(message);
     log->ensureCursorVisible();
 
-    // 限制显示最近的5条命令
+    // 限制显示最近的3条命令
     QStringList lines = log->toPlainText().split("\n");
-    if (lines.size() > 5) {
+    if (lines.size() > 3) {
         log->clear();
-        for (int i = lines.size() - 5; i < lines.size(); ++i) {
+        for (int i = lines.size() - 3; i < lines.size(); ++i) {
             log->append(lines[i]);
         }
     }
@@ -186,7 +186,9 @@ void onCompressImage(QLabel* processedLabel, QTextEdit* log, QWidget* window) {
     int originalSize = currentImage.total() * currentImage.elemSize();
 
     // 压缩图像
-    std::vector<uchar> compressedData = compressImage(currentImage);
+    std::vector<uchar> compressedData;
+    std::vector<int> compressionParams = {cv::IMWRITE_JPEG_QUALITY, 100}; // 设置JPEG压缩质量为90
+    cv::imencode(".jpg", currentImage, compressedData, compressionParams);
     int compressedSize = compressedData.size();
 
     // 计算压缩率
@@ -345,6 +347,15 @@ int main(int argc, char** argv) {
             border: 1px solid #ccc;
             padding: 10px;
             font-size: 16px;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+        QLineEdit {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: black;
         }
     )");
 
